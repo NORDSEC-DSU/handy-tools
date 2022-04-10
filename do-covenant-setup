@@ -1,0 +1,9 @@
+#!/bin/bash
+
+apt install docker.io
+git clone --recurse-submodules https://github.com/cobbr/Covenant
+cd Covenant/Covenant
+docker build -t covenant .
+docker run -it -p 7443:7443 -p 80:80 -p 443:443 -p 3269:3269 --name covenant -v /root/Covenant/Covenant/Data:/app/Data covenant
+
+# -p is for exposing docker ports.
